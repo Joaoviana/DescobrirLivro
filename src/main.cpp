@@ -36,8 +36,8 @@ vector<string> splitString(string input, string delimiter) {
 
 vector<string> filter(vector<string> s) {
 	for (int i = 0; i < s.size(); i++) {
-		if (s[i].size() <= 3) {
-			s.erase(s.begin()+ i);
+		if (s[i].size() <= 2) {
+			s.erase(s.begin() + i);
 			i--;
 		}
 	}
@@ -66,7 +66,6 @@ vector<int> compare(vector<string> input, vector<string> bookTitle) {
 }
 
 bool checksIfFinished(vector<int> scoreVector, vector<string> bookTitle) {
-	bool check = false;
 	int nrOfCorrect = 0;
 
 	for (int k = 0; k < scoreVector.size(); k++) {
@@ -75,15 +74,15 @@ bool checksIfFinished(vector<int> scoreVector, vector<string> bookTitle) {
 		}
 	}
 
-	if (nrOfCorrect == bookTitle.size()) {
-		check = true;
+	if (nrOfCorrect != bookTitle.size()) {
+		return false;
 	}
-
-	return check;
+	else
+		return true;
 }
 
 int main() {
-	int score = 5;
+	int score = 6;
 	vector<string> splitTitle, splitUserInput;
 	Book b = Book();
 	b.loadPortugueseTitles();
@@ -101,25 +100,48 @@ int main() {
 	string userClue;
 
 	while (finished == false) {
-		cout << "CLUE: " << endl;
-		cin >> userClue;
-		splitUserInput = splitString(userClue, " ");
+		cout << "CLUE: ";
+		string response;
+		getline(cin, response);
+		//cin >> userClue;
+		//cout << "CIN   " << response << endl;
+		splitUserInput = splitString(response, " ");
 		points = compare(splitUserInput, splitCenas);
 		for (int i = 0; i < points.size(); i++) {
-			cout << points[i] << endl;
+			cout << "ALGORITHM OUTPUT: " <<points[i] << endl << endl;
+			int x = points[i];
+			switch (x) {
+			case 0:
+				cout << "esta certo" << endl;
+				break;
+			case 1:
+				cout << "perto" << endl;
+				break;
+			case 2:
+				cout << "quase lá" << endl;
+				break;
+			case 3:
+				cout << "frio" << endl;
+				break;
+			}
 		}
 		finished = checksIfFinished(points, splitCenas);
+
 		score--;
+		if (score < 0) {
+			cout << "YOU'VE LOST";
+			break;
+		}
 	}
-	if (score > 0)
+	if (score > 0) {
+		cout << score << endl << endl;
 		cout << "YOU'VE WON";
-	else
+	} else {
+		//cout << score << endl << endl;
 		cout << "YOU'VE LOST";
+	}
 	return 0;
 }
-//criar interacao com o utilizador
 //checkar ordem
-//ignorar palavras com menos de 2 caracteres
 //2 versoes
-//trabalhar com um primeiro, depois ver random titles.
 //adicionar pistas, colocando indices nos livros e books e criando pistas.txt e clues.txt
