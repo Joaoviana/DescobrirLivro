@@ -17,14 +17,14 @@
 using namespace std;
 
 class Book {
-	string title, author, year;
+	string title, author, year, clue;
 
 	vector<Book> livros;
 	vector<Book> books;
 public:
 
 	Book();
-	Book(string title, string author, string year);
+	Book(string title, string author, string year, string clue);
 	virtual ~Book();
 
 	void loadPortugueseTitles();
@@ -38,8 +38,6 @@ public:
 	int getNrOfBooks();
 	int getNrOfLivros();
 
-
-
 	//gets and sets
 	const string& getAuthor() const;
 	void setAuthor(const string& author);
@@ -52,10 +50,15 @@ public:
 	void setLivros(const vector<Book>& livros);
 	string getTitle() const;
 	void setTitle(const string& title);
+
+	const string& getClue() const {
+		return clue;
+	}
+
+	void setClue(const string& clue) {
+		this->clue = clue;
+	}
 };
 
 #endif /* SRC_BOOK_H_ */
 
-
-//load ficheiros
-//ver quais as variaveis

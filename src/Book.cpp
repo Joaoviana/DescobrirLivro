@@ -12,37 +12,39 @@ Book::Book() {
 
 }
 
-Book::Book(string title, string author, string year) {
+Book::Book(string title, string author, string year, string clue) {
 	this->title = title;
 	this->author = author;
 	this->year = year;
+	this->clue = clue;
 }
 
 void Book::loadPortugueseTitles() {
 	ifstream file("livros.txt");
-	string title, author, year, line;
+	string title, author, year, line, clue;
 	while (getline(file, line)) {
 		stringstream iss(line);
 		getline(iss, title, ',');
 		getline(iss, author, ',');
 		getline(iss, year, ',');
+		getline(iss, clue, '/');
 
-		Book l = Book(title, author, year);
+		Book l = Book(title, author, year, clue);
 		livros.push_back(l);
 	}
 }
 
 void Book::loadEnglishTitles() {
 	ifstream file("books.txt");
-	string index,title, author, year, line;
+	string title, author, year, line, clue;
 	while (getline(file, line)) {
 		stringstream iss(line);
-		getline(iss, index, ',');
 		getline(iss, title, ',');
 		getline(iss, author, ',');
 		getline(iss, year, ',');
+		getline(iss,clue, '/');
 		// ADICIONAR INDEXES
-		Book b = Book(title, author, year);
+		Book b = Book(title, author, year, clue);
 		books.push_back(b);
 	}
 }
