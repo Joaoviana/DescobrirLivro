@@ -13,6 +13,7 @@ size_t uiLevenshteinDistance(const string &s1, const string &s2) {
 
 	if (m == 0)
 		return n;
+
 	if (n == 0)
 		return m;
 
@@ -22,6 +23,7 @@ size_t uiLevenshteinDistance(const string &s1, const string &s2) {
 		costs[k] = k;
 
 	size_t i = 0;
+
 	for (std::string::const_iterator it1 = s1.begin(); it1 != s1.end();
 			++it1, ++i) {
 		costs[0] = i + 1;

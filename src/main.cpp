@@ -6,7 +6,6 @@
  */
 
 #include "Book.h"
-#include "Menu.h"
 #include "LevenshteinDistance.h"
 
 #include <vector>
@@ -19,6 +18,7 @@ using namespace std;
 void ClearScreen() {
 	cout << string(100, '\n');
 }
+
 vector<string> splitString(string input, string delimiter) {
 	vector<string> output;
 	size_t start = 0;
@@ -95,7 +95,7 @@ void firstMenu() {
 	string userClue;
 	vector<string> splitTitle, splitUserInput;
 	string randTitle = b.getRandomLivro().getTitle();
-	cout << randTitle << endl << endl;
+	//cout << randTitle << endl << endl;
 	cout << "DESCRICAO: " << endl;
 	cout << b.getRandomLivro().getClue() << endl << endl;
 
@@ -108,14 +108,14 @@ void firstMenu() {
 		cout << "----";
 		cout << "PISTA: " << endl;
 		getline(cin, response);
-		printf("merda merda \n");
+
 		splitUserInput = splitString(response, " ");
 		points = compare(splitUserInput, title);
 
 		for (int i = 0; i < points.size(); i++) {
 			int x = points[i];
 
-			cout << "ALGORITHM OUTPUT: " << points[i] << endl;
+			//cout << "ALGORITHM OUTPUT: " << points[i] << endl;
 
 			switch (x) {
 			case 0:
@@ -129,6 +129,9 @@ void firstMenu() {
 				break;
 			case 3:
 				cout << "frio" << endl;
+				break;
+			default:
+				cout << "muito longe" << endl;
 				break;
 			}
 		}
@@ -197,6 +200,9 @@ void secondMenu() {
 			case 3:
 				cout << "cold..." << endl;
 				break;
+			default:
+				cout << "youre too far" << endl;
+				break;
 			}
 		}
 
@@ -229,7 +235,7 @@ void testMenu() {
 	string userClue;
 	vector<string> splitTitle, splitUserInput;
 	string randTitle = b.getRandomLivro().getTitle();
-	cout <<  "Titulo do livro: " << randTitle << endl << endl;
+	cout << "Titulo do livro: " << randTitle << endl << endl;
 	cout << "DESCRICAO: " << endl;
 	cout << b.getRandomLivro().getClue() << endl << endl;
 
@@ -271,6 +277,9 @@ void testMenu() {
 			case 3:
 				cout << "frio" << endl;
 				break;
+			default:
+				cout << "muito longe" << endl;
+				break;
 			}
 		}
 
@@ -309,23 +318,23 @@ int main() {
 
 	case 1:
 		cout << endl << endl << endl << endl;
+		ClearScreen();
 		cout << "-------------------------------------------------" << endl
 				<< endl;
-		ClearScreen();
 		firstMenu();
 		break;
 	case 2:
 		cout << endl << endl << endl << endl;
+		ClearScreen();
 		cout << "-------------------------------------------------" << endl
 				<< endl;
-		ClearScreen();
 		secondMenu();
 		break;
 	case 3:
 		cout << endl << endl << endl << endl;
+		ClearScreen();
 		cout << "-------------------------------------------------" << endl
 				<< endl;
-		ClearScreen();
 		testMenu();
 		break;
 	default:

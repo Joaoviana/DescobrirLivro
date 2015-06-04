@@ -7,6 +7,8 @@
 
 #include "Book.h"
 
+#include <ctime>
+
 Book::Book() {
 	// TODO Auto-generated constructor stub
 
@@ -42,8 +44,8 @@ void Book::loadEnglishTitles() {
 		getline(iss, title, ',');
 		getline(iss, author, ',');
 		getline(iss, year, ',');
-		getline(iss,clue, '/');
-		// ADICIONAR INDEXES
+		getline(iss, clue, '/');
+
 		Book b = Book(title, author, year, clue);
 		books.push_back(b);
 	}
